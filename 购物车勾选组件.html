@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.check-box {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				border:2px solid gray;
+			}
+			.checked {
+				background: url(img/check.png) no-repeat left;
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<check-box></check-box>
+			
+		</div>
+		
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			
+			Vue.component('check-box', {
+				template: "<div class='check-box' :class='{checked:a}' @click='select' :isTrue='a'></div>",
+				data: function() {
+					return {
+						checked: "checked",
+						a: false
+					}
+				},
+				methods: {
+					select: function() {
+						this.a = !this.a;
+					}
+				},
+				props: {
+					isTrue: {
+						type: Boolean,
+						default: false
+					}
+				}
+			})
+			var app = new Vue({
+				el:'#app',
+				data: {
+//					checked: "checked",
+//					aaa: false,
+	
+				},
+				methods: {
+//					select: function() {
+//						this.aaa = !this.aaa;
+//						console.log(this.aaa);
+//					}
+				}
+			})
+		</script>
+	</body>
+</html>
