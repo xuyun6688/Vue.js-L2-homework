@@ -5,10 +5,12 @@
 		<title></title>
 		<style type="text/css">
 			.check-box {
+				display: inline-block;
 				width: 40px;
 				height: 40px;
 				border-radius: 50%;
 				border:2px solid gray;
+				box-sizing: border-box;
 			}
 			.checked {
 				background: url(img/check.png) no-repeat left;
@@ -18,7 +20,8 @@
 	</head>
 	<body>
 		<div id="app">
-			<check-box></check-box>
+			<check-box :istrue="true"></check-box>
+			<check-box :istrue="false"></check-box>
 			
 		</div>
 		
@@ -26,37 +29,33 @@
 		<script type="text/javascript">
 			
 			Vue.component('check-box', {
-				template: "<div class='check-box' :class='{checked:a}' @click='select' :isTrue='a'></div>",
+				template: "<div class='check-box' :class='{checked:flag}' @click='select'></div>",
 				data: function() {
 					return {
-						checked: "checked",
-						a: false
+						flag: false
 					}
 				},
 				methods: {
 					select: function() {
-						this.a = !this.a;
+						this.flag = !this.flag;
 					}
 				},
 				props: {
-					isTrue: {
+					istrue: {
 						type: Boolean,
 						default: false
 					}
+				},
+				created: function() {
+					this.flag = this.istrue;
 				}
+				
 			})
 			var app = new Vue({
 				el:'#app',
 				data: {
-//					checked: "checked",
-//					aaa: false,
-	
 				},
 				methods: {
-//					select: function() {
-//						this.aaa = !this.aaa;
-//						console.log(this.aaa);
-//					}
 				}
 			})
 		</script>
